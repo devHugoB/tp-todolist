@@ -9,7 +9,6 @@
         <thead>
             <tr>
                 <th>Nom</th>
-                <th>Description</th>
                 <th>Créer le</th>
                 <th>Fini ?</th>
                 <th>Finis le</th>
@@ -20,7 +19,6 @@
         {% for task in tasks %}
             <tr>
                 <td>{{ task.name }}</td>
-                <td>{{ task.description }}</td>
                 <td>{{ task.createdAt ? task.createdAt|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ task.finished ? 'Oui' : 'Non' }}</td>
                 <td>{{ task.finishedAt ? task.finishedAt|date('d/m/Y H:i:s') : '' }}</td>
@@ -31,7 +29,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">Aucune tâche trouvée...</td>
+                <td colspan="5">Aucune tâche trouvée...</td>
             </tr>
         {% endfor %}
         </tbody>
