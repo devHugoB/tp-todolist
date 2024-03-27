@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes tâches{% endblock %}
+
+{% block body %}
+    <h1>Mes tâches</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Créer le</th>
+                <th>Fini ?</th>
+                <th>Finis le</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for task in tasks %}
+            <tr>
+                <td>{{ task.name }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.createdAt ? task.createdAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>{{ task.finished ? 'Oui' : 'Non' }}</td>
+                <td>{{ task.finishedAt ? task.finishedAt|date('d/m/Y H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('task_show', {'id': task.id}) }}">Afficher</a>
+                    <a href="{{ path('task_edit', {'id': task.id}) }}">Éditer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">Aucune tâche trouvée...</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('task_new') }}">Ajouter une tâche</a>
+{% endblock %}
