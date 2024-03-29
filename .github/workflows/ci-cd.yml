@@ -49,6 +49,7 @@ jobs:
       run: php bin/phpunit
 
   symfony-e2e:
+  needs: symfony-tests
       runs-on: ubuntu-22.04
       steps:
         - uses: actions/checkout@v4
@@ -57,7 +58,7 @@ jobs:
             browser: chrome
 
   symfony-build:
-    needs: symfony-tests
+    needs: symfony-e2e
     runs-on: ubuntu-latest
     steps:
       - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
