@@ -38,9 +38,9 @@ jobs:
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Create Database
-      run: \
-      mkdir -p var
-      touch var/tests.db
+      run: |
+        mkdir -p var
+        touch var/tests.db
     - name: Execute Migrations
       run: php bin/console doctrine:migrations:migrate --env=test
     - name: Load Fixtures
