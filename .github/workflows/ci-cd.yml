@@ -49,13 +49,13 @@ jobs:
       run: php bin/phpunit
 
   symfony-e2e:
-  needs: symfony-tests
-      runs-on: ubuntu-22.04
-      steps:
-        - uses: actions/checkout@v4
-        - uses: cypress-io/github-action@v6
-          with:
-            browser: chrome
+    needs: symfony-tests
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
 
   symfony-build:
     needs: symfony-e2e
