@@ -38,12 +38,14 @@ jobs:
     - name: Install Dependencies
       run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
     - name: Create Database
-      run: |
-        mkdir -p data
-        touch data/database.sqlite
+      run: touch var/tests.db
+    - name: Execute Migrations
+      run: php bin/console doctrine:migrations:migrate --env=test
+    - name: Load Fixtures
+      run: php bin/console doctrine:fixtures:load --env=test
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
-        DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+        DATABASE_URL: sqlite:///%kernel.project_dir%/var/tests.db
       run: vendor/bin/phpunit
 
   symfony-build:
