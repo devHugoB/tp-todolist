@@ -46,9 +46,7 @@ jobs:
     - name: Load Fixtures
       run: php bin/console doctrine:fixtures:load --env=test --no-interaction
     - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DATABASE_URL: sqlite:///%kernel.project_dir%/var/tests.db
-      run: vendor/bin/phpunit
+      run: php bin/phpunit
 
   symfony-build:
     needs: symfony-tests
