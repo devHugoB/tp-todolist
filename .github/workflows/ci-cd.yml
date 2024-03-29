@@ -42,9 +42,9 @@ jobs:
         mkdir -p var
         touch var/tests.db
     - name: Execute Migrations
-      run: php bin/console doctrine:migrations:migrate --env=test
+      run: php bin/console doctrine:migrations:migrate --env=test --no-interaction
     - name: Load Fixtures
-      run: php bin/console doctrine:fixtures:load --env=test
+      run: php bin/console doctrine:fixtures:load --env=test --no-interaction
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DATABASE_URL: sqlite:///%kernel.project_dir%/var/tests.db
@@ -69,7 +69,7 @@ jobs:
       - name: Install Database
         run: php bin/console doctrine:database:create --if-not-exists
       - name: Execute Migrations
-        run: php bin/console doctrine:migrations:migrate
+        run: php bin/console doctrine:migrations:migrate --no-interaction
       - name: Compile Assets
         run: php bin/console asset-map:compile
 
