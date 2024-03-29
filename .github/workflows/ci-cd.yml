@@ -48,6 +48,14 @@ jobs:
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       run: php bin/phpunit
 
+  symfony-e2e:
+      runs-on: ubuntu-22.04
+      steps:
+        - uses: actions/checkout@v4
+        - uses: cypress-io/github-action@v6
+          with:
+            browser: chrome
+
   symfony-build:
     needs: symfony-tests
     runs-on: ubuntu-latest
